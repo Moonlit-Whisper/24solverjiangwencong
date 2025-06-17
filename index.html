@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>24点游戏求解器 - 南京工业大学</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+      background: #f6fbff;
+      position: relative;
+      min-height: 100vh;
+    }
+    /* 全屏水印校徽 */
+    .njupt-watermark {
+      position: fixed;
+      z-index: 0;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      background: url('45ef3b2bea04d14c4b7a624849b55eb1.jpeg') center center no-repeat;
+      background-size: 60vh auto;
+      opacity: 0.13;
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.97);
+      border-radius: 14px;
+      box-shadow: 0 8px 32px #0002;
+      margin: 64px auto 0 auto;
+      padding: 36px 38px 28px 38px;
+      max-width: 410px;
+      min-width: 320px;
+    }
+    .njupt-badge {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      margin-top: -22px;
+      box-shadow: 0 2px 8px #0002;
+      border: 2px solid #eee;
+      background: #fff;
+    }
+    h1 {
+      margin: 8px 0 6px 0;
+      color: #1b6ac6;
+      letter-spacing: 2px;
+      font-size: 2.1em;
+      font-weight: 700;
+      text-shadow: 0 2px 6px #0001;
+    }
+    .subtitle {
+      margin-bottom: 14px;
+      color: #555;
+      font-size: 1.08em;
+      font-weight: normal;
+    }
+    .inputs {
+      margin-bottom: 18px;
+    }
+    input[type="text"] {
+      width: 38px;
+      font-size: 1.18em;
+      text-align: center;
+      margin: 0 5px;
+      border: 1.8px solid #1b6ac6;
+      border-radius: 4px;
+      transition: border 0.2s;
+      outline: none;
+      padding: 3px 2px;
+      background: #fafdff;
+    }
+    input[type="text"]:focus {
+      border: 2px solid #e08b32;
+      background: #fff8e6;
+    }
+    input[type="button"] {
+      background: linear-gradient(90deg,#1b6ac6,#6ab7ff 90%);
+      color: #fff;
+      font-size: 1em;
+      border: none;
+      border-radius: 4px;
+      padding: 7px 25px;
+      margin-left: 18px;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 6px #0001;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    input[type="button"]:hover {
+      background: linear-gradient(90deg,#145a9b,#4db1f7 90%);
+      box-shadow: 0 4px 10px #1b6ac640;
+    }
+    #output {
+      display: block;
+      margin: 18px 0 0 0;
+      min-height: 40px;
+      text-align: left;
+      background: #f3f7fc;
+      border-radius: 5px;
+      padding: 12px 18px;
+      color: #222;
+      font-size: 1em;
+      box-shadow: 0 1px 2px #0001;
+      word-break: break-all;
+    }
+    .footer {
+      margin-top: 34px;
+      color: #888;
+      font-size: 1.01em;
+      letter-spacing: 1px;
+      z-index: 1;
+      position: relative;
+      text-align: center;
+      line-height: 1.8;
+    }
+    .footer strong {
+      color: #1b6ac6;
+      font-weight: bold;
+    }
+    .footer .mentor {
+      display: block;
+      font-size: 0.97em;
+      color: #666;
+      margin-top: 2px;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 520px) {
+      .container {
+        padding: 18px 2vw 16px 2vw;
+        max-width: 96vw;
+      }
+      .njupt-badge {
+        width: 46px;
+        height: 46px;
+      }
+      h1 {
+        font-size: 1.3em;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="njupt-watermark"></div>
+<div class="container">
+  <img class="njupt-badge" src="45ef3b2bea04d14c4b7a624849b55eb1.jpeg" alt="南京工业大学校徽">
+  <h1>24点游戏求解器</h1>
+  <div class="subtitle">
+    南京工业大学<br>
+    <span style="font-size: 0.96em;">作者：蒋文聪</span>
+  </div>
+  <div class="inputs">
+    <input type="text" id="input_a" value="A" size="2" onclick="this.select()" onkeydown="checkEnter(event)">
+    <input type="text" id="input_b" value="J" size="2" onclick="this.select()" onkeydown="checkEnter(event)">
+    <input type="text" id="input_c" value="Q" size="2" onclick="this.select()" onkeydown="checkEnter(event)">
+    <input type="text" id="input_d" value="K" size="2" onclick="this.select()" onkeydown="checkEnter(event)">
+    <input type="button" value="求解" onclick="clickSolve()">
+  </div>
+  <span id="output"></span>
+</div>
+<div class="footer">
+  南京工业大学 · <strong>蒋文聪</strong>
+  <span class="mentor">指导老师：陈务深</span>
+</div>
+<script type="text/javascript" src="24-expressions.js"></script>
+<script type="text/javascript" src="24.js"></script>
+<script type="text/javascript">
+  function parse(s) {
+    switch (s.toUpperCase()) {
+      case "A": return 1;
+      case "J": return 11;
+      case "Q": return 12;
+      case "K": return 13;
+    }
+    var n = parseInt(s);
+    if (isNaN(n) || n < 1 || n > 13) {
+      alert("Invalid Input: " + s);
+      return 0;
+    }
+    return n;
+  }
+  function checkEnter(event) {
+    if (event.keyCode == 13) clickSolve();
+  }
+  function clickSolve() {
+    var ns = [parse(input_a.value), parse(input_b.value), parse(input_c.value), parse(input_d.value)];
+    if (ns[0] == 0 || ns[1] == 0 || ns[2] == 0 || ns[3] == 0) return false;
+    var solutions = solve(ns);
+    var s = solutions.length + " 种方法<br>";
+    for (var i = 0; i < solutions.length; i ++) {
+      s += render(solutions[i]) + " = 24<br>";
+    }
+    output.innerHTML = s;
+    return false;
+  }
+</script>
+</body>
+</html>
