@@ -1,6 +1,8 @@
 # 24点游戏求解器
 [24点游戏](https://baike.baidu.com/item/24%E7%82%B9) 求解器：为你给出所有不等价解法。[试试吧！](https://moonlit-whisper.github.io/24solverjiangwencong/)
 
+蒋文聪的课程作业之一，与[广义24点概率](https://github.com/Moonlit-Whisper/Generalized-24-points-probability)相辅相成
+
 ## 相似解法
 例如，对于数字为 2, 3, 6, Q(12) 的牌，可能的解法有：
 
