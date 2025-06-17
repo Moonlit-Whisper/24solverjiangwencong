@@ -1,5 +1,5 @@
 # 24点游戏求解器
-[24点游戏](https://en.wikipedia.org/wiki/24_Game) 求解器：为你给出所有不等价解法。[试试吧！](http://ns1.xqbase.com:8080/24.html)
+[24点游戏](https://baike.baidu.com/item/24%E7%82%B9) 求解器：为你给出所有不等价解法。[试试吧！](https://moonlit-whisper.github.io/24solverjiangwencong/)
 
 ## 相似解法
 例如，对于数字为 2, 3, 6, Q(12) 的牌，可能的解法有：
@@ -55,7 +55,7 @@
     1, 2, 2, a
     2, a, a, b // 2 × a - a = (a + a) ÷ 2
 
-在我们的 JavaScript 程序中，[pregen.js](https://github.com/auntyellow/24/blob/master/pregen.js) 生成了这些不等价表达式的集合并保存为 [24-expressions.js](https://github.com/auntyellow/24/blob/master/24-expressions.js)。[24.js](https://github.com/auntyellow/24/blob/master/24.js) 则决定使用哪一组，并找出所有匹配的表达式。
+在我们的 JavaScript 程序中，[pregen.js](https://github.com/Moonlit-Whisper/24solverjiangwencong/blob/main/pregen.js) 生成了这些不等价表达式的集合并保存为 [24-expressions.js](https://github.com/Moonlit-Whisper/24solverjiangwencong/blob/main/24-expressions.js)。[24.js](https://github.com/Moonlit-Whisper/24solverjiangwencong/blob/main/24.js) 则决定使用哪一组，并找出所有匹配的表达式。
 
 对于 `a, a', b, c`（其中 `a' = a + 1`），我们还要考虑 `a' - a` 可能无用。因此需要过滤掉所有包含 `(a' - a) ×`、`× (a' - a)` 和 `÷ (a' - a)` 的表达式，然后尝试 `b + c` 和 `b × c` 作为补充。
 
